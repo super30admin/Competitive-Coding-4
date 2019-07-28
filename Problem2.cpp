@@ -29,7 +29,7 @@ public:
         return true;
     }
 
-    int recurr(TreeNode* node){
+    int recurr1(TreeNode* node){ //method1
         if(node == NULL){
             return 0;
         }
@@ -42,23 +42,28 @@ public:
         }
 
         return max(leftSize+1,rightSize+1);
-//         if(node->left == NULL && node->right == NULL){
-//             return 1;
-//         }
+    }
 
-//         int leftSize = 0; int rightSize = 0;
+    int recurr2(TreeNode* node){ //method2
+        if(node->left == NULL && node->right == NULL){
+            return 1;
+        }
 
-//         if(node->left != NULL){
-//             leftSize= recurr(node->left);
-//         }
+        int leftSize = 0; int rightSize = 0;
 
-//         if(node->right!=NULL){
-//             rightSize= recurr(node->right);
-//         }
+        if(node->left != NULL){
+            leftSize= recurr(node->left);
+        }
 
-//         if(abs(leftSize-rightSize)>=0 && abs(leftSize-rightSize)<=1){
-//             return max(leftSize+1,rightSize+1);
-//         }
-        // return -1;
+        if(node->right!=NULL){
+            rightSize= recurr(node->right);
+        }
+        if(leftSize==-1 || rightSize == -1){
+            return -1;
+        }
+        if(abs(leftSize-rightSize)>=0 && abs(leftSize-rightSize)<=1){
+            return max(leftSize+1,rightSize+1);
+        }
+        return -1;
     }
 };
