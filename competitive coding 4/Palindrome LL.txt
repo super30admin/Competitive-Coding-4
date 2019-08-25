@@ -1,0 +1,43 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+// time complexity = O(n)
+//space complexity = O(1)
+// executed on leetcode
+class Solution {
+    public ListNode reverse(ListNode head){  // to reverse second half of LL
+        ListNode temp=null;
+        ListNode c=head;
+        while(c.next!=null)
+        {
+            temp=c.next;
+            c.next=temp.next;
+            temp.next=head;
+            head=temp;
+        }
+        return head;
+    }
+    public boolean isPalindrome(ListNode head) {
+        if(head==null || head.next==null) return true;
+     // two ele   if(head.next==null) return true;
+        ListNode slow=head,fast=head.next;
+        while(fast!=null && fast.next!=null){  // to find the mid of LL
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        ListNode head2=slow.next;
+        head2=reverse(head2);
+        while(head2!=null)  // compare second reversed half with first half
+        {
+            if(head.val!=head2.val) return false;
+            head=head.next;
+            head2=head2.next;
+        }
+        return true;
+    }
+}
