@@ -1,0 +1,42 @@
+/**
+Time O(n)
+space O(1)
+Leetcode yes
+Problem no
+
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+        
+        return depth(root) !=null;
+        
+        
+    }
+        private Integer depth(TreeNode root)
+        {
+            
+            if(root==null)
+                return 0;
+            
+            Integer leftDepth= depth(root.left);
+            Integer rightDepth =  depth(root.right);
+            
+            if(leftDepth== null || rightDepth == null)
+                return null;
+            
+            if(Math.abs(leftDepth - rightDepth) >1)
+                return null;
+                
+            return Math.max(leftDepth,rightDepth) +1;
+            
+            
+        }
+        
+}
