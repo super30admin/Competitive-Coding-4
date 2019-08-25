@@ -7,6 +7,8 @@
 
 class Solution:
     def isBalanced(self, root: TreeNode) -> bool:
+        # Time Complexity : O(n) where n is the number of elements in the tree
+        # Space Complexity : constant because I'm not using any extra space.
         # base case
         if root == None:
             return True

@@ -6,6 +6,8 @@
 
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
+        # Time complexity : O(n) where n is the number of nodes in the linked list
+        # Space Complexity : constant because I'm not using any extra space
         if head == None:
             return True
         fast = head.next
