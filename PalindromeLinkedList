@@ -1,0 +1,64 @@
+/**
+Time O(n)
+Space O(1)
+leetcode yes
+problem no
+
+Find the middle element ,reverse the list after the middle element and then compare left half and right half element by element
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        
+        if(head == null || head.next == null)
+            return true;
+          
+        // Finding the middle element
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        while(fast!=null && fast.next!=null)
+        {   
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        ListNode headRight = null;
+        
+        // Setting start of right half for even and odd list
+        if(fast == null)
+             headRight = slow;
+        else
+             headRight = slow.next;
+        
+
+        //Reverse second half    
+        ListNode prev = null;
+        ListNode curr = headRight;
+        
+        while(curr!=null)
+        {
+            ListNode temp2 = curr.next;
+            curr.next = prev;
+            prev= curr;
+            curr = temp2;
+        }
+        
+        // Comparing values of both the lists
+        while(prev!= null)
+        {
+            if(head.val != prev.val)
+                return false;
+            
+            head = head.next;
+            prev = prev.next;
+        }
+        
+        return true;
+    }
+}
