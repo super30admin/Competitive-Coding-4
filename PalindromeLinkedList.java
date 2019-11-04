@@ -12,7 +12,6 @@ Any problem you faced while coding this:
     My initial solution which passed all test cases was O(N) space using a stack
     Total time I spent on this problem was about 1 hour
  */
-import java.util.Stack;
 
 class Solution {
     public boolean isPalindrome(ListNode head) {
