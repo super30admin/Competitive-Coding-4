@@ -1,4 +1,5 @@
 /**
+Daily Problem #54
 Time Complexity : O(N)
 Space Complexity : O(1)
 Did this code successfully run on Leetcode : 
@@ -21,7 +22,7 @@ class Solution {
         ListNode previous = null;
         
         // Reverse the original linked list
-        while(originalHead != null){
+        while(originalHead != null) {
             reverseHead =  new ListNode(originalHead.val);
             if(previous != null){
                 reverseHead.next = previous;
@@ -31,7 +32,7 @@ class Solution {
         }
         
         // Compare original linked list with reversed list to determine palindrome
-        while(reverseHead != null){
+        while(reverseHead != null) {
             if(reverseHead.val != head.val){
                 palindrome = false;
                 break;
