@@ -14,42 +14,22 @@ import java.util.ArrayList;
 
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        if(root == null){
-            return new ArrayList<List<Integer>>();
-        }
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> firstLevel = new ArrayList<>();
-        
-        firstLevel.add(root.val);
-        result.add(firstLevel);        
-        if(root.left == null && root.right == null){
-            return result;
-        }
-                
-        List<List<Integer>> leftResult = levelOrder(root.left);
-        List<List<Integer>> rightResult = levelOrder(root.right);
-        
-        int numLevel = Math.max(leftResult.size(), rightResult.size());
-        for(int i =0; i < numLevel; i++) {
-            if(i < leftResult.size() && i < rightResult.size()) {
-                List<Integer> leftLevel = leftResult.get(i);
-                List<Integer> rightLevel = rightResult.get(i);
-                //add the right node values to the left node value list
-                for(int j = 0; j < rightLevel.size(); j++){
-                    leftLevel.add(rightLevel.get(j));
+        public List<List<Integer>> levelOrder(TreeNode root) {
+            List<List<Integer>> result = new ArrayList<>();
+            if(root == null) return result;
+            Queue<TreeNode> q = new LinkedList<>();
+            q.add(root);
+            while(!q.isEmpty()){
+                int size = q.size();
+                List<Integer> level = new ArrayList<>();
+                for(int i = 0; i < size; i++){
+                    TreeNode current = q.poll();
+                    level.add(current.val);
+                    if(current.left != null) q.add(current.left);
+                    if(current.right != null) q.add(current.right);
                 }
-                result.add(leftLevel);    
+                result.add(level);
             }
-            // if i exceeds the number of levels on left side
-            else if(i < leftResult.size()){
-                result.add(leftResult.get(i));
-            }
-            // if i exceeds the number of levels on right side
-            else if(i < rightResult.size()) {
-                result.add(rightResult.get(i));
-            }
-            
-        }
-        
-        return result;
+            return result;
     }
+}
