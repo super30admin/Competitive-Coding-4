@@ -1,0 +1,37 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    
+    private boolean result = true;
+    
+    public boolean isBalanced(TreeNode root) {
+        checkHeight(root);
+        return result;
+    }
+    
+    public int checkHeight(TreeNode root){
+        
+        //base case
+        if(root==null)
+            return 0;
+        
+        //recursion
+        int leftHeight = checkHeight(root.left);
+        int rightHeight = checkHeight(root.right);
+        
+        //logic
+        if(Math.abs(leftHeight - rightHeight)>1)
+            result = false;
+        
+        //We will add one in height and return to previous upper level
+        //As discussed we will take only the max out of two heights
+        return 1 + Math.max(leftHeight,rightHeight);
+    }
+}
