@@ -1,0 +1,28 @@
+Time: O(n)
+Space: O(n) if function stack space is considered; else O(1)
+
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+       if(root == null) return true;
+        return height(root) != -1;
+    }
+    
+    private int height(TreeNode root)
+    {
+        if(root == null) return 1;
+        
+        int lh = 0;
+        int rh = 0;
+        
+        lh = height(root.left);
+        if(lh == -1) return -1;
+        rh = height(root.right);
+        if(rh == -1) return -1;
+        
+        if(lh-rh < -1 || lh-rh > 1) return -1;
+        
+        return (Math.max(lh, rh) + 1);
+        
+        
+    }
+}
