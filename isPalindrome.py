@@ -33,3 +33,34 @@ class Solution:
                 return False
             first, second = first.next, second.next
         return True
+    
+    
+  #Solution using stack with Space Complexity:O(N/2)
+   class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        if  not head or  not head.next:
+            return True
+      
+
+        #find the head of the second half part
+        fast = head;
+        slow = head;
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+        
+        #slow now is the head of second half
+        
+        #Push the second half into the stack
+        stack=[slow.val]
+        while slow.next:
+            slow=slow.next
+            stack.append(slow.val)
+            
+        curr=head
+        while stack:
+            if stack.pop()!=curr.val:
+                return False
+            curr=curr.next
+        return True
+        
