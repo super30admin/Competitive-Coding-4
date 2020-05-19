@@ -1,0 +1,53 @@
+// Time Complexity : O(n)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+import java.lang.Integer;
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        // edge case
+        if( head  == null || head.next == null)
+            return true;
+        
+        ListNode slow = head, fast = head;
+        
+        // get the middle of the LL
+        while( fast.next != null && fast.next.next != null){
+            slow = slow.next;   // move slow pointer one
+            fast = fast.next.next;  // move fast pointer 2 at a time
+        }
+        
+        // incase the LL is of odd length then move to next item to get middle
+        if(fast != null)
+            slow = slow.next;
+        
+       // reverse 2 second half of LL 
+        ListNode slow2 = reverse (slow);
+        
+        // check from the head and the reverse half part and if not matched return false
+        while(slow2 != null){
+            if( head.val != slow2.val)
+                return false;
+            slow2 = slow2.next; // move both pointer by 1
+            head  = head.next;
+        }
+        
+        return true; // by default true
+
+    }
+    
+    // reverse second half of list just change the pointers the element should point its next to prev element instead of next
+    private ListNode reverse(ListNode head){
+        ListNode prev = null;
+        while( head  != null){
+            ListNode temp = head.next;
+            head.next = prev;
+            prev = head;
+            head = temp;
+        }
+        
+        return prev;
+    }
+}

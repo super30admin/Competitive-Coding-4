@@ -1,0 +1,30 @@
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+
+class Solution {
+
+    public boolean isBalanced(TreeNode root) {
+          /* edge case */
+        if(root == null) return true;
+        /* height of left and right subtree */
+        int left = depth(root.left);
+        int right = depth(root.right);
+        /* the height difference between left and right should be less than or equal to 1*/
+        /* also need to check that right and left tree are balanced */
+        return Math.abs(left -right) <=1 && isBalanced(root.left) && isBalanced(root.right);
+    }
+    
+    /* get the height of tree */
+    public int depth(TreeNode root){
+        /* edge case */
+        if(root == null) return 0;
+        /* get height of left and right */
+        int l = depth(root.left);
+        int r =depth(root.right);
+        /* the height is max of left or right and plus 1 */
+        return Math.max(l,r)+1;
+    }
+}
