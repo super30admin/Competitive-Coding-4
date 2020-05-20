@@ -7,6 +7,7 @@ The balance condition is that the height of the left subtree of a node and right
 elsewise return true. We need to call the height function for each and every node to check the validity of a balanced Binary tree.
 */
 class Solution {
+    /*   RECURISVE
     public boolean isBalanced(TreeNode root) {
       if(root == null){ return true;}
      return height(root) == -1? false : true;                   // If the -1 is returned => false
@@ -19,5 +20,35 @@ class Solution {
             return -1;
         }
         return 1 + Math.max(left, right);                       // return the height of the particular node from bottom to top
+    } */
+
+            // ITERATIVE 
+    class Solution {
+    public boolean isBalanced(TreeNode root) {
+      if(root == null){ return true;}
+      HashMap<TreeNode, Integer> height = new HashMap<>();                  // Store the height of nodes 
+      Stack<TreeNode> stk = new Stack<>();                                  // Next node to process in DFS
+      stk.push(root);
+      int left = 0, right = 0;
+      while(!stk.isEmpty())
+      { TreeNode node = stk.pop();
+        if(node.left != null && !height.containsKey(node.left)){                // Enter the left child and the node itself since, we are missing out the chance of calculating the height of this node without the child's height
+            stk.push(node);
+            stk.push(node.left);
+        } 
+       if(node.right != null && !height.containsKey(node.right)){
+            stk.push(node);                                             // Push the right child so that its height gets calculated, then parent gets calculated using the child's height values
+            stk.push(node.right);
+        }
+        if(((node.left != null && height.containsKey(node.left)) || (node.left == null)) && ((node.right != null && height.containsKey(node.right)) || (node.right == null))){ // if leaf , its height needs to be calculated on priority
+        left = node.left == null ? 0 : height.get(node.left);               // Use the children height to calculate parene height = bottom up approach
+        right = node.right == null ? 0 : height.get(node.right);
+        if(Math.abs(left - right) > 1) {return false;}                      // Violation condition
+        height.put(node, Math.max(left, right) + 1);                            // Height storing for each and every node in a map
+        }
     }
+    System.out.println(height);
+    return true;
+}
+}
 }
