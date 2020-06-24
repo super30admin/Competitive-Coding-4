@@ -13,15 +13,31 @@ class Node:
         self.right = None 
 
 class Solution:
-    def isBalanced(self, root) :
-        if not root:
-            return True 
-        return self.isBalanced(root.left) and self.isBalanced(root.right) and abs(self.height(root.left) - self.height(root.right)) <= 1 
+    # Method 1) on O(n^2) time
+    # def isBalanced(self, root) :
+    #     if not root:
+    #         return True 
+    #     return self.isBalanced(root.left) and self.isBalanced(root.right) and abs(self.height(root.left) - self.height(root.right)) <= 1 
     
-    def height(self,root):
-        if not root:
-            return 0 
-        return max(self.height(root.left),self.height(root.right)) + 1 
+    # def height(self,root):
+    #     if not root:
+    #         return 0 
+    #     return max(self.height(root.left),self.height(root.right)) + 1 
+    
+    # Method 2) O(n) time with a global boolean to store the result 
+        result = True 
+        def isBalanced(self, root) :
+            self.__helper(root)
+            return self.result
+
+        def __helper(self,root):
+            if not root:
+                return 0 
+            l = self.__helper(root.left) 
+            r = self.__helper(root.right)
+            if abs(l-r) > 1 :
+                self.result = False 
+            return 1 + max(l,r)
 
 if __name__ == "__main__":
     s = Solution()
