@@ -1,0 +1,31 @@
+Approach 1 :
+Time Complexity :O(N)
+Space Complexity : O(1) --- > Changing inplace
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        fast=head
+        slow=head
+        while fast!=None and fast.next!=None:
+            slow=slow.next
+            fast=fast.next.next
+        #reverse the 2nd half
+        prev=None
+        temp=slow
+        while temp!=None:
+            nxt=temp.next
+            temp.next=prev
+            prev=temp
+            temp=nxt
+        mid=prev
+        temp=head
+        while mid!=None:
+            if mid.val!=temp.val:
+                return False
+            mid=mid.next
+            temp=temp.next
+        return True
