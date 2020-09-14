@@ -1,4 +1,9 @@
-      
+  # // Time Complexity : O(n)
+# // Space Complexity : O(n), including recursive stack
+# // Did this code successfully run on Leetcode : Yes
+# // Any problem you faced while coding this : Yes, unsure about the time complexity and how to calculate it.
+
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
