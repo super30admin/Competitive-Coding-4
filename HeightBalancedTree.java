@@ -2,10 +2,7 @@
 
 This is a recursive DFS solution.
 TC: O(N)
-SC: O(H) - stack can contain Height of the tree elements. It is O(N) for skewed tree.
-
-The same question with a BFS approach will have SC = O(D) D - tree diameter. It will be again O(N) - complete tree.
-
+SC: O(N) 
 1. Check if left and right subtrees are balanced recursively.
 2. Also, check if current node is balanced. 
 
