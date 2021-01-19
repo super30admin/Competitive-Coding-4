@@ -4,7 +4,7 @@ import java.util.*;
 class BinaryTreeLevelOrder {
 
   // Time Complexity : O(N)
-  // Space Complexity : O(W) - Max width of the tree (Not sure if this is true)
+  // Space Complexity : O(N/2) = O(N) | max number of nodes at any time would be equal to number of leaf nodes
   // Did this code successfully run on Leetcode : YES
   // Any problem you faced while coding this : NO
 
@@ -32,6 +32,35 @@ public List<List<Integer>> levelOrder(TreeNode root) {
         }
 
         return output;
+    }
+
+
+    // Time Complexity : O(N)
+    // Space Complexity : O(H) | H = height of a tree (Considering recursive stack space)
+    // Did this code successfully run on Leetcode : YES
+    // Any problem you faced while coding this : NO
+    // USE DFS, maintain node's level in each node's recursive stack.
+
+    List<List<Integer>> result;
+    public List<List<Integer>> levelOrderDFS(TreeNode root) {
+      result = new ArrayList<>();
+      if(root == null) return result;
+      dfs(root, 0);
+      return result;
+    }
+
+    public void dfs(TreeNode root, int level) {
+      // base
+      if(root == null) return;
+
+        // logic
+        if(level == result.siz()){
+          result.add(new ArrayList<>());
+        }
+
+        dfs(root.left, level + 1);
+        dfs(root.right, level + 1);
+
     }
 
     public class TreeNode {
