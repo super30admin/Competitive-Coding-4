@@ -1,10 +1,11 @@
 # Created by Aashish Adhikari at 9:50 AM 1/22/2021
 '''
 Time Complexity:
-O(max(m,n))
+O(m.n) since in the worst case when all the cells have fresh ranges except for the top-left cell, we append all the
+cells to the bfs queue by the end and will have iterated through all of them at least once.
 
 Space Complexity:
-
+O(m.n) as all the cells will be added in the worst case to the bfs queue.
 '''
 
 class Solution(object):
