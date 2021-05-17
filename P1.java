@@ -23,6 +23,7 @@ class Solution {
     boolean isBalanced;
     
     public boolean isBalanced(TreeNode root) {
+        
         isBalanced=true;
         int curht= helper(root,0);
         return isBalanced;
@@ -31,7 +32,7 @@ class Solution {
     public int helper(TreeNode root, int currht)
     {
         if(root==null) return 0;
-        
+    
         if(root.left== null && root.right==null) return currht+1;
         
         int leftht = helper(root.left, currht);
@@ -43,6 +44,5 @@ class Solution {
         }
         
         return Math.max(leftht,rightht)+1;
-        
     }
 }
