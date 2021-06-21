@@ -5,7 +5,7 @@
 
 
 // Your code here along with comments explaining your approach
-// The basic idea is to calculate the height of the left and right sub trees for each nodes and check if their height differs by more than 1 
+// The basic idea is to calculate the height of the left and right sub trees for each node and check if their height differs by more than 1 
 class Solution {
     private boolean result;
     public boolean isBalanced(TreeNode root) {
