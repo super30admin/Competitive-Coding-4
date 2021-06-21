@@ -1,5 +1,5 @@
 // TC: O(n)
-// SC: O(hs)
+// SC: O(h)
 class Solution {
     boolean result = true;
     private int helper(TreeNode root, int height) {
