@@ -1,7 +1,7 @@
-# Time Complexity : 
-# Space Complexity : 
-# Did this code successfully run on Leetcode : 
-# Any problem you faced while coding this : 
+# Time Complexity : O(N)
+# Space Complexity : O(N)
+# Did this code successfully run on Leetcode : Yes
+# Any problem you faced while coding this : No
 
 # Definition for singly-linked list.
 # class ListNode:
