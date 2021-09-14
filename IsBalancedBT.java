@@ -1,5 +1,6 @@
 // TIME: O(n)
 // SPACE: O(h) where h = height of the tree
+// SUCCESS on LeetCode
 
 public class IsBalancedBT {
     private boolean balanced;
