@@ -1,3 +1,9 @@
+// Time Complexity : O(n)  n=no of elements in linked list.
+// Space Complexity :O(1)   
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : No
+
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
