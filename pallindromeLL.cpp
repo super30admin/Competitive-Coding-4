@@ -1,5 +1,6 @@
-//Time complexity : O(n)
-//Space Complexity : O(1)
+//Time complexity : O(2n)
+//Space Complexity : O(1) // This is a modified version where I used recursive approach for reverse
+                          // For recursive, space should be O(n / 2)
 
 
 //Approach :
