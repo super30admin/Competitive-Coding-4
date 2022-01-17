@@ -1,0 +1,55 @@
+// Time Complexity : O(n)
+// Space Complexity : O(h)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach
+we can make height function to et height of trees
+we compare height of left and right, if diff is greater than 1 return false;
+then we run balanced function of roots left and right, if both are true we r good to go.
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+        //base condition
+        if(root==null){
+            return true;
+        }
+        int lft = height(root.left);
+        
+        int rght = height(root.right);
+        
+        if(Math.abs(lft-rght)>1){
+            return false;
+        }
+        
+        return isBalanced(root.left) && isBalanced(root.right);
+      
+        
+    }
+    
+    public int height(TreeNode root){
+        //base condition
+        if(root==null) return 0;
+        
+        int lft = height(root.left);
+        int rght=height(root.right);
+        
+        return Math.max(lft, rght) + 1;
+    }
+}
