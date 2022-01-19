@@ -1,0 +1,31 @@
+//tc: O(n)
+//sc: O(1)
+//passed on leetcode: yes
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        ListNode prev = null;
+        ListNode temp = null;
+        
+        while (fast.next!=null && fast.next.next!=null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode curr = slow.next;
+        while (curr!= null) {
+            temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        while (prev!= null && head!=null) {
+            if (prev.val!=head.val){
+                return false;
+            }
+            prev = prev.next;
+            head = head.next;
+        }
+        return true;
+    }
+}
