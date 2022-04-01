@@ -12,6 +12,8 @@
  *         this.right = right;
  *     }
  * }
+ time complexity : O(nlogn)
+ space complexity : O(h) height of the tree
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
