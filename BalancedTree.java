@@ -1,4 +1,11 @@
+// Time Complexity : O(n) n is elements of tree nodes
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
 
+
+// Your code here along with comments explaining your approach: if the tree is balanced then the height of its left and right
+//should be the same. so at every node, find its left and right height if that's betweek 0 or 1, its valid.
 class TreeNode {
     int val;
     TreeNode left;

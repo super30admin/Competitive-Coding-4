@@ -1,3 +1,11 @@
+// Time Complexity : O(n) list nodes in the linkedlist
+// Space Complexity : O(1) in place reversal and checking.
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach: reverse the second half of the list and
+// check it one by one with first element.
 public class Palindrome {
 
     public static boolean isPalindrome(ListNode head) {
