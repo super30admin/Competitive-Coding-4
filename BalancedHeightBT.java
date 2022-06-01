@@ -1,7 +1,7 @@
-// Time Complexity :
-// Space Complexity :
-// Did this code successfully run on Leetcode :
-// Any problem you faced while coding this :
+// Time Complexity :O(nlogn)
+// Space Complexity :O(nlogn)
+// Did this code successfully run on Leetcode :Yes
+// Any problem you faced while coding this :No
 
 // Your code here along with comments explaining your approach
 class BalancedHeightBT {
@@ -20,6 +20,12 @@ class BalancedHeightBT {
     }
 }
 
+// Time Complexity :O(n)
+// Space Complexity :O(n)
+// Did this code successfully run on Leetcode :Yes
+// Any problem you faced while coding this :No
+
+// Your code here along with comments explaining your approach
 class BalancedHeightSol2 {
     public boolean isBalanced(TreeNode root) {
         if (root == null)
