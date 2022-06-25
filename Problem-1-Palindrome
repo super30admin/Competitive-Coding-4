@@ -1,0 +1,46 @@
+//TC,SC - O(n) , O(1)
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        if(head == null || head.next == null) return true;
+        ListNode curr = head;
+        ListNode mid = midList(head);
+      //  System.out.println(mid.val);
+        ListNode rlist = reverseList(mid);
+      //  System.out.println(rlist);
+        while(rlist != null)
+        {
+            if(curr.val != rlist.val)
+                return false;
+            curr = curr.next;
+            rlist = rlist.next;
+        }
+        return true;
+    }
+    
+    private ListNode midList(ListNode head)
+    {
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast != null && fast.next != null)
+        {
+             fast = fast.next.next;
+            slow = slow.next;
+           
+        }
+        return slow;
+    }
+    
+    private ListNode reverseList(ListNode head)
+    {
+        ListNode curr = head;
+        ListNode prev = null;
+        while(curr != null)
+        {
+            ListNode temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        return prev;
+    }
+}
