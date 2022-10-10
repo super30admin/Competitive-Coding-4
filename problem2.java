@@ -1,28 +1,44 @@
 package Competitive-Coding-4;
-//Q 118:- Leetcode
+//Q 234:- Leetcode
 public class problem2 {
-// Time Complexity : O(n^2)
-// Space Complexity : O(n^2)
+// Time Complexity : O(n)
+// Space Complexity : O(1)
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : No
-    public List<List<Integer>> generate(int numRows) {
+public boolean isPalindrome(ListNode head) {
         
-        List<List<Integer>> triangle = new ArrayList<>();
-        int num = 1;
-        
-        for(int i = 0; i < numRows; i++){
-            List<Integer> list = new ArrayList<>();
-            for(int j = 0; j <= i; j++){
-                if(j == 0 || i == 0){
-                    num = 1;
-                    list.add(num);
-                }else{
-                    num = num * (i - j + 1) / j;
-                    list.add(num);
-                }
-            }
-            triangle.add(list);
-        }
-        return triangle;   
+    if(head == null || head.next == null){
+        return true;
     }
+    
+    // find mid and break linkedlist in two part from mid
+    ListNode slow = head;
+    ListNode fast = head;
+    while(fast!=null && fast.next!=null && fast.next.next!=null){
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    
+    // reverse the second part of linked list
+    ListNode curr = slow.next;
+    ListNode prev = null;
+    while(curr != null){
+        ListNode temp = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = temp;
+    }
+    
+    fast = prev; // head of second part
+    slow = head; // head of first part
+    while(slow != null && fast != null){
+        if (slow.val != fast.val){
+            return false;
+        }
+        slow = slow.next;
+        fast = fast.next;
+    }
+    
+    return true;
+}
 }
