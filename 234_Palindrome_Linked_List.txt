@@ -1,0 +1,67 @@
+// Time Complexity : o(n)
+// Space Complexity : o(1)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach
+/*
+* Reverse the second half of linked list
+* Check if node val on both the lists are same
+* move the ptrs
+* if at any point if the node values are not same then it is not a palindrome
+* */
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode secondHalf = getHalf(head);
+        ListNode reverse = reverse(secondHalf);
+        while(reverse!=null){
+            if(reverse.val != head.val){
+                return false;
+            }
+            reverse = reverse.next;
+            head = head.next;
+        }
+
+        return true;
+    }
+    ListNode getHalf(ListNode head){
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+    ListNode reverse(ListNode head){
+        if(head==null){
+            return null;
+        }
+
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode fast = curr.next;
+        while(fast!=null){
+            curr.next = prev;
+            prev = curr;
+            curr = fast;
+            fast = fast.next;
+        }
+        curr.next = prev;
+        return curr;
+    }
+}
