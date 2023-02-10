@@ -1,4 +1,4 @@
-// Approach 1: Calculate height for every node
+// ######### APPROACH 1: Calculate height for every node ############
 // Time Complexity : O(nlogn)
 // Space Complexity : O(n)
 
@@ -19,7 +19,7 @@ class Solution {
     }
 }
 
-// Approach 2: Bottom up approach
+// ########## APPROACH 2: Bottoms Up ############
 // Time Complexity : O(n)
 // Space Complexity : O(n)
 
