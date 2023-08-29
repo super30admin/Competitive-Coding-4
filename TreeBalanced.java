@@ -1,3 +1,7 @@
+// TC O(n)
+// SC 0(1)
+// Binary tree is balanced if its left and right sub tree is balanced. Here we will calcaulte height
+// 
 class TreeBalance{
     public boolean isBalanced(TreeNode root){
         if(root = null) return true;
