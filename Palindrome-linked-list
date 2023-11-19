@@ -1,0 +1,30 @@
+#time complexity: O(n)
+#space complexity: O(1)
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = head
+        #find middle point of list
+        while(fast and fast.next):
+            slow = slow.next
+            fast = fast.next.next
+        #reverse second half of list
+        prev = None
+        curr = slow
+        while(curr):
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+        #comparing both list
+        while(prev):
+            if head.val != prev.val: return False
+            head=head.next
+            prev=prev.next
+        return True
