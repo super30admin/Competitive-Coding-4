@@ -1,5 +1,5 @@
 //T.C O(n)
-//S.C O(1)
+//S.C O(h) h- height of the tree
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
