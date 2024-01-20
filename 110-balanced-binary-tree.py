@@ -42,6 +42,32 @@ The number of nodes in the tree is in the range [0, 5000].
 #         self.left = left
 #         self.right = right
 class Solution:
+    
+    """
+    Accepted
+    Time Complexity: O(n)
+    Space Complexity: O(h)
+    Explanation: Instead of calculating heights of each subtree while traversing the tree,
+        we came up with a bottom up approach. DFS to the bottom of the tree and calculate the height
+        and check the balance, then return both the height and balance to the parent node.
+        The parent node then checks the balance and returns the balance and height to its parent node.
+        This continues until the root node is reached. If the root node is balanced, then the tree is balanced.
+        
+        This is an improvement over the previous solution because we don't have to calculate the height of each subtree
+        which is effecient because we don't have to traverse the tree multiple times.
+    """
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        def rec(root) -> (bool, int):
+            if root is None:
+                return (True, 0)
+            
+            left, right = rec(root.left), rec(root.right)
+            balanced = (left[0] and right[0] and
+                        abs(left[1] - right[1]) <=1 )
+            
+            return (balanced, 1 + max(left[1], right[1]))
+        return rec(root)[0]
+    
     """
     Accepted
     Time Complexity: O(n^2)
