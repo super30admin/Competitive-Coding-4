@@ -1,0 +1,31 @@
+# Evaluate Reverse Polish Notation
+
+# tc: O(n)
+# Sc: O(n)
+
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        operators = {'+', '-', '*', '/'}
+
+        for token in tokens:
+            if token in operators:
+                operand2 = stack.pop()
+                operand1 = stack.pop()
+                if token == '+':
+                    stack.append(operand1 + operand2)
+                elif token == '-':
+                    stack.append(operand1 - operand2)
+                elif token == '*':
+                    stack.append(operand1 * operand2)
+                elif token == '/':
+                # Division between two integers truncates toward zero
+                    if operand1 * operand2 < 0 and operand1 % operand2 != 0:
+                        stack.append(operand1 // operand2 + 1)
+                    else:
+                        stack.append(operand1 // operand2)
+            else:
+            # If token is not an operator, it's an operand
+                stack.append(int(token))
+
+        return stack.pop()   
