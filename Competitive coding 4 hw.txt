@@ -1,0 +1,117 @@
+Competitive coding 4:
+
+
+problem 1: Palindrome linked list
+
+
+solution 1:
+
+#TC: O(n)
+#SC: O(1)
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        if head == None or head.next == None:
+            return True
+        
+        #1 find middle element
+        slow = head
+        fast = head
+
+        while fast.next != None and fast.next.next != None:
+            slow = slow.next
+            fast = fast.next.next
+        
+        #2. reverse 2nd half of LL
+        fast = self.reverse(slow.next)
+        slow.next = None
+
+        #3. comparing 2 LL
+        return self.isEqual(head, fast)
+
+
+    def reverse(self, head: Optional[ListNode]) -> ListNode:
+        prev = None
+        curr = head
+        fast = head.next
+        while fast != None:
+            curr.next = prev
+            prev = curr
+            curr = fast
+            fast = fast.next
+        curr.next = prev
+
+        return curr
+
+    def isEqual(self, l1: ListNode, l2: ListNode) -> bool:
+        while l1 and l2:
+            if l1.val != l2.val:
+                return False
+            l1 = l1.next
+            l2 = l2.next
+        return True
+
+
+
+
+
+solution 2:
+
+#TC: O(n)
+#SC: O(n)
+
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        if head == None:
+            return True
+        
+        help = list()
+
+        while head :
+            help.append(head.val)
+            head = head.next
+        i= 0
+        j = len(help) - 1
+        while i < j:
+            if help[i] != help[j]:
+                return False
+            i = i + 1
+            j = j-1
+        return True
+
+
+
+
+
+
+
+problem 2:  Height Balanced Binary Tree
+
+
+Time Complexity: O(n)
+Space Complexity: O(h)
+
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        if root == None:
+            return True
+        self.isvalid = True
+        self. dfs(root)
+        return self.isvalid 
+    
+    def dfs(self, root: Optional[TreeNode]) -> int:
+        if root == None:
+            return 0
+
+        leftn = self.dfs(root.left)
+        rightn = self.dfs(root.right)
+
+        if leftn == None or rightn == None:
+            return 0
+        
+        if abs(leftn - rightn) > 1:
+            self.isvalid = False
+        else:
+            return max(leftn, rightn) + 1
+
+
+
