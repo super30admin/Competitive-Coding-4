@@ -1,3 +1,7 @@
 # Competitive-Coding-4
 
-Please submit the interview problems posted in slack channel here. The problems and statements are intentionally not shown here so that students are not able to see them in advance 
+## Problem 1
+is Linked List palindrome (https://leetcode.com/problems/palindrome-linked-list/)
+
+## Problem 2
+Height Balanced Binary Tree (https://leetcode.com/problems/balanced-binary-tree/) 
