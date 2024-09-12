@@ -1,0 +1,28 @@
+//	Timecomplexity:- O(2n);
+//Space complexity:-O(n);
+//Did it run on leetcode:- Yes.
+//What were the problems faced while doing it?:- nothing
+//:- Your code with explanation:- as in palendrome last element= first element,last but one element=second element,we can push all elements in stack as it is lifo and checking pop for every element to first element iteratively.
+
+
+
+
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode current1=head;
+        Stack<Integer> a1=new Stack<>();
+        while(current1!=null){
+            a1.push(current1.val);
+            current1=current1.next;
+        }
+        current1=head;
+        while(current1!=null){
+            if(a1.pop()!=current1.val){
+                return false;
+            }
+            current1=current1.next;
+        }
+        
+return true;}
+}
