@@ -1,0 +1,56 @@
+// Time Complexity : O(n)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+//Approach 
+// break the linked list into 2 halves,then reverse the second half and in the end compare the values of both the newly formed linked list and if they are same then it means the given linked list is a palindrome else not.
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        if(head == null) return true;
+        ListNode t1 = head;
+        
+        ListNode mid = findMid(head);
+        ListNode reverseHead = reverseList(mid);
+        while(reverseHead !=null){
+            if(t1.val != reverseHead.val){
+                return false;
+            }
+            t1 = t1.next;
+            reverseHead = reverseHead.next;
+        }
+        return true;
+    }
+    
+    public ListNode findMid(ListNode head){
+        ListNode slow = head; ListNode fast = head;
+        while(fast != null && fast.next!= null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    
+    public ListNode reverseList(ListNode head){
+        ListNode prev = null;
+        ListNode curr = head;
+        
+        while(curr !=null){
+            ListNode temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        return prev;
+    }
+    
+}
