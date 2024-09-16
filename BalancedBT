@@ -1,0 +1,18 @@
+//tc:O(h)
+//sc:O(1)
+class Solution {
+    boolean flag = true;
+    public boolean isBalanced(TreeNode root) {
+        getHeight(root);
+        return flag;
+    }
+    
+    private int getHeight(TreeNode root) {
+        //base
+        if (root == null) return -1;
+        int l = getHeight(root.left);
+        int r = getHeight(root.right);
+        if (Math.abs(l-r)>1) flag = false;
+        return 1 + Math.max(l, r);
+    }
+}
