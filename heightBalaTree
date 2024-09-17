@@ -1,0 +1,41 @@
+// Time Complexity :O(n)
+// Space Complexity :O(h)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+
+class Solution {
+     boolean isBalanced;
+    public boolean isBalanced(TreeNode root) {
+        isBalanced=true;
+        if(root==null) return true;
+        int left=findHeight(root);   
+        int right=findHeight(root);  
+        
+        return isBalanced;
+        
+    }
+    public int findHeight(TreeNode root){
+        //at node
+        if(root==null){//at leaf height will be 0
+            return 0;
+        }
+        
+        int leftH=findHeight(root.left);//to find height of left tree
+        if(isBalanced){//is tree is still balaced do right recursive call
+            int rightH=findHeight(root.right);
+             /// base case
+            int diff=leftH-rightH;
+
+             if(Math.abs(diff)>1){//check for balanced tree
+
+                isBalanced=false;
+            }
+            //logic
+
+            return Math.max(leftH,rightH)+1;//return max height of left and right because we need overall height of the subree
+        }
+        
+        return 0;
+      
+    }
+}
