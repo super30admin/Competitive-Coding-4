@@ -1,0 +1,29 @@
+// Time Complexity : O(N)
+// Space Complexity : O(1)
+
+// Your code here along with comments explaining your approach: Idea is to do dfs traverse and calculate height of left and right sub tree at each level.
+// Hint use 1 + Math.max(depth of LeftSubTree,Depth of right SubTree) while traversing back to root
+
+class Solution {
+    boolean flag = true;
+    public boolean isBalanced(TreeNode root) {   
+        helper(root);
+        return flag;
+    }
+    
+    public int helper(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        
+        int left = helper(root.left);
+        // System.out.println("left: "+root.left.val);
+        // System.out.println("r: "+root.right.val);  
+         int right= helper(root.right);
+         
+        if(Math.abs(left-right)>1){
+           flag = false;  
+        }
+        return 1+ Math.max(left,right);
+    }
+}

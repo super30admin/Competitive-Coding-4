@@ -1,0 +1,53 @@
+
+// Time Complexity : O(N)
+// Space Complexity : O(N) ?? -> recursive stack to reverse the elements
+
+// Your code here along with comments explaining your approach: Idea is to do traverse slow pointer until half and reverse the remaining list 
+
+SOLUTION:
+
+class Solution {
+    private boolean result = true;
+    public boolean isPalindrome(ListNode head) {
+        if(head==null){
+            return true;
+        }
+        
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        ListNode reverseHead = reverse(slow);
+        slow = head;
+        fast = reverseHead;
+        // System.out.println(fast.val);
+        // System.out.println(fast.next.val);
+
+        while(slow!=fast && slow!=null && fast!=null){
+            if(slow.val != fast.val ){
+                result = false;
+                break;
+            }else{
+                slow = slow.next;
+                fast = fast.next;
+            }
+        } 
+        return result;
+    }
+    
+    private ListNode reverse(ListNode midHead){
+        if(midHead==null || midHead.next==null){
+            return midHead;
+        }
+        
+        ListNode reversed = reverse(midHead.next);
+        midHead.next.next = midHead;
+        midHead.next = null;
+        
+        return reversed;
+    }
+}
