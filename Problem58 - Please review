@@ -1,0 +1,28 @@
+// Time Complexity :O(n)
+// Space Complexity :O(n)
+// Did this code successfully run on Leetcode :Yes
+
+class Solution {
+    
+    func isBalanced(_ root: TreeNode?) -> Bool {
+        var md: Int = 0
+        return isBalanced(root, &md)
+    }
+    
+    func isBalanced(_ root: TreeNode?, _ max_depth: inout Int) -> Bool {
+        
+        guard var root = root else { return true }
+        
+        var depth_left: Int = max_depth + 1
+        if isBalanced(root.left, &depth_left) == false { return false }
+        
+        var depth_right: Int = max_depth + 1
+        if isBalanced(root.right, &depth_right) == false { return false }
+        
+        max_depth = max(depth_left, depth_right) 
+        
+        if abs(depth_left - depth_right) > 1 { return false }
+        
+        return true
+    }
+}
