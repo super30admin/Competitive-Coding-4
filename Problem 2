@@ -1,0 +1,39 @@
+//Balanced Binary Tree solution
+//Time Complexity : O(n)
+// Space Complexity :O(h)
+// Did this code successfully run on Leetcode :Yes
+// Any problem you faced while coding this :No
+class Solution {
+public:
+    int height_of_the_tree(TreeNode* root){
+        if(root==NULL) return 0;
+        int l = height_of_the_tree(root->left);
+        int r = height_of_the_tree(root->right);
+        if(l>r)
+            return l+1;
+        return r+1;
+    }
+    bool isBalanced(TreeNode* root) {
+        if(root==NULL) return true;
+        bool l = isBalanced(root->left);
+        bool r = isBalanced(root->right);
+        int l_value=0;int r_value=0;
+        if(l==true && r==true){
+            l_value = height_of_the_tree(root->left);
+            r_value = height_of_the_tree(root->right);
+        }
+        else{
+            return false;
+        }
+        int diff=0;
+        if(l_value>r_value){
+            diff = l_value-r_value;
+            if(diff>1) return false;
+        }
+        else{
+            diff = r_value-l_value;
+            if(diff>1) return false;
+        }
+        return true;
+    }
+};
