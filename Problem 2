@@ -1,0 +1,32 @@
+// Time Complexity : O(n) - where n is the number of nodes in the tree.
+// Space Complexity : O(h) - where h is the height of the tree.
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+// Your code here along with comments explaining your approach: Check for left Subtree balance, right Subtree balance and check if the difference is <=1. If all of this is satisfied then the binary tree is balanced.
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+        if(root==null) return true;
+        return isBalanced(root.left) && isBalanced(root.right) && Math.abs(height(root.left)-height(root.right))<=1;
+    }
+    private int height(TreeNode root){
+        if(root==null) return 0;
+        else
+            return Math.max(height(root.left),height(root.right))+1;
+    }
+}

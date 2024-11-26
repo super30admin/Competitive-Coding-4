@@ -1,0 +1,48 @@
+// Time Complexity : O(n) - we traverse through all the nodes in the linked list - here n is the number of nodes.
+// Space Complexity : O(1) - no extra space used.
+// Did this code successfully run on Leetcode : Yes.
+// Any problem you faced while coding this : No.
+
+
+// Your code here along with comments explaining your approach: Found out the middle of the linked list. Reversed the second half of the list. Made a check of whether the values at each of the lists are the same or not until either of them hits null.
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+       if(head==null) return true;
+       ListNode slow=head;ListNode fast=head.next;
+        //middle
+       // 1 2 -2> null
+        //1 2 ->null
+        while(fast!=null && fast.next!=null){
+           slow=slow.next;
+           fast=fast.next.next;
+       }
+        //reverse
+       ListNode two=reverse(slow.next);
+        slow.next=null; // first list will always be bigger.
+        //comparision
+        // one of them is null then it is not checked.
+        while(two!=null && head!=null){
+            if(two.val==head.val){
+                two=two.next;
+            head=head.next;
+            }
+            else{
+                return false;
+            }
+          
+        }
+        return true;
+    }
+    
+    private ListNode reverse(ListNode r){
+        ListNode prev=null;ListNode temp;
+        while(r!=null){
+            temp=r.next;
+            r.next=prev;
+            prev=r;
+            r=temp;
+        }
+        
+        return prev;
+    }
+}
