@@ -1,0 +1,47 @@
+// Time Complexity : O(n) + O(n/2)+O(n/2) => O(n)
+// Space Complexity :O(1)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+
+
+// Your code here along with comments explaining your approach
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+   boolean flag=true;
+   
+      ListNode slow=head;
+      ListNode fast=head;
+      if(head == null || head.next == null){
+        return true;
+      } 
+      //to find the mid element throught the linkedlist 
+      while(fast.next != null && fast.next.next != null){ //O(n)
+     slow=slow.next;
+     fast=fast.next.next;
+      }
+      ListNode prev=null;
+      fast=reverse(slow.next,prev); // to reverse second part of linkedlist from slow to fast
+      slow.next=null; //once done with reversing second part ,removing the connection between slow and second part
+      slow=head; // resetting slow to head
+       // comparing first part and reversed second part of linkedlist weather those two are equal or not .
+      while(fast != null && slow != null){ //O(n/2)
+        if(slow.val != fast.val){
+         return false;
+        }
+        slow=slow.next;
+        fast=fast.next;
+      }
+       return flag;
+    }
+    //reversing the second part of linkedlist using prev and temp var
+    public ListNode reverse(ListNode current,ListNode prev){ // O(n/2)
+        while(current != null){
+          ListNode temp=current.next;
+            current.next=prev;
+            prev=current;
+            current=temp;
+        }
+        return prev;
+    }
+}
