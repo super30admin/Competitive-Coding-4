@@ -1,0 +1,47 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+        if(root == null){
+            return true;
+        }
+        //calculate count(left depth and right depth diff) for every node
+        int count = countNode(root);
+        if(count == -1){
+            return false;
+        }
+        return true;
+    }
+
+    private int countNode(TreeNode root){
+        if(root == null){
+            return 0;
+        }
+        int left = countNode(root.left);
+        if(left == -1){
+            return -1;
+        }
+        int right = countNode(root.right);
+        if(right == -1){
+            return -1;
+        }
+        //at any node, if diff b/w left and right count is more than one, return -1;
+        if(Math.abs(left - right) > 1){
+            return -1;
+        }
+        return Math.max(left, right)+1;
+    }
+}
